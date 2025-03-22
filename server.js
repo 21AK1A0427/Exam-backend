@@ -7,6 +7,7 @@ app.use(express.json());
 app.use(cors());
 
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx4Y_7Ip-VsVCRtNyssIcQ3bWZt9J1m6sCYiKhKYYF9DwqTIUhye_ZqPdk0q698l9IR/exec";
+console.log("📥 Google Sheets Response:", JSON.stringify(rows, null, 2));
 
 app.post("/login", async (req, res) => {
   try {
