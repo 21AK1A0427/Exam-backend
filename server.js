@@ -11,11 +11,8 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx4Y_7Ip-VsVC
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log("🔹 Received Login Request:", email, password);
 
     const response = await axios.get(GOOGLE_SCRIPT_URL);
-    console.log("🔹 Google Sheets Response:", response.data);
-
     const rows = response.data;
 
     if (!Array.isArray(rows)) {
@@ -28,14 +25,11 @@ app.post("/login", async (req, res) => {
     );
 
     if (user) {
-      console.log("✅ Login successful:", email);
       res.json({ success: true, message: "Login successful" });
     } else {
-      console.log("❌ Invalid credentials:", email);
       res.status(401).json({ success: false, message: "Invalid credentials" });
     }
   } catch (error) {
-    console.error("❌ Error:", error.message);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
